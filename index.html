@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice To do List</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+body {
+  box-sizing: border-box;
+  margin: auto;
+  text-align: center;
+}
+
+.chatbox {
+  display: inline-flex;
+  margin: auto;
+  text-align: center;
+}
+
+/*hidden by default*/
+.chat-popup {
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+  width:275px;
+  text-align:left;
+}
+
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: #98cbd7;
+}
+
+.form-container textarea {
+  width: 225px;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  resize: none;
+  min-height: 100px;
+}
+
+.form-container .btn {
+  background-color: red;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+ul {
+  list-style: none;
+  padding:0;
+}
+
+p {
+  text-align:right;
+  color:white;
+}
+
+.btn.cancel {
+  background-color:black;
+}
+</style>
+<body>
+
+<div class="chatbox">
+<div class="chat-popup" id="myForm">
+  <form class="form-container">
+    <h1>Chat</h1>
+
+    <label for="msg"><b>Message</b></label>
+    <textarea id="textbox" placeholder="Type message.." name="msg" required></textarea>
+    <p id="ulTxt"></p>
+    <ul id="msgs"></ul>
+    <button id="button" name="submitmsg" type="submit" onclick="myFunction()" class="btn">Send</button>
+    <button id="close" type="button" class="btn cancel" onclick="refreshPage()">Close</button>
+  </form>
+  </div>
+
+
+<script>
+var textbox = document.getElementById("textbox");
+var button = document.getElementById("button");
+var msgs = document.getElementById("msgs");
+
+button.addEventListener('click', function() {
+  var newMessage = document.createElement("li");
+  newMessage.innerHTML = textbox.value;
+  msgs.appendChild(newMessage);
+  textbox.value = "";
+});
+
+function refreshPage() {
+  window.location.reload();
+}
+
+function myFunction() {
+  let text;
+  let person = prompt("Please enter your name:", "Your Name");
+  if (person == null || person == "") {
+    text = "Goodbye!";
+  } else {
+    text = "Hello " + person + "! How are you today? Welcome!";
+  }
+  document.getElementById("ulTxt").innerHTML = text;
+}
+
+</script>
+</body>
+</html>
